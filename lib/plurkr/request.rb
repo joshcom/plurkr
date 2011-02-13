@@ -21,7 +21,7 @@ module Plurkr
     def request_method(options)
       options[:method] || :get
     end
-    
+
     def request(options)
       unless self.authenticated? || options[:no_auth]
         raise Plurkr::Unauthenticated, "You must create a session before requesting a resource"

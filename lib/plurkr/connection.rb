@@ -1,4 +1,5 @@
 require 'faraday_middleware'
+require File.expand_path('../middleware/middleware',__FILE__)
 
 module Plurkr
   module Connection
@@ -11,6 +12,8 @@ module Plurkr
       Faraday::Connection.new(faraday_options(options)) do |builder|
         builder.adapter Faraday.default_adapter
         builder.use Faraday::Response::ParseJson
+        builder.use Plurkr::Middleware::ClientError
+        builder.use Plurkr::Middleware::ServerError
       end
     end
 

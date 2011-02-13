@@ -27,12 +27,5 @@ describe Plurkr::Client do
       @p_client.request(:resource => 'Users/logout', :no_auth => true)
     end
 
-=begin    
-    it "should create session after logging in" do
-      stub_login_request
-      @p_client.request(:username => test_username, :password => test_password)
-      @p_client.authenticated?().should be_true
-    end
-=end
   end
 end
