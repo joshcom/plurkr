@@ -23,23 +23,6 @@ module Plurkr
     end
     
     def request(options)
-      if (options[:username] && options[:password])
-        request_authentication(options)
-      else
-        request_resource(options)
-      end
-    end    
-
-    def request_authentication(options)
-      response = connection(:ssl=>true).get do |req|
-        req.url self.authentication_resource,
-          { :api_key => self.api_key, :no_data => "1" }.merge(options) 
-      end
-      
-      self.cookie = response.headers["set-cookie"]
-    end
-
-    def request_resource(options)
       unless self.authenticated? || options[:no_auth]
         raise Plurkr::Unauthenticated, "You must create a session before requesting a resource"
       end
