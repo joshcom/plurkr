@@ -1,10 +1,13 @@
 require File.expand_path('../configuration', __FILE__)
 require File.expand_path('../request', __FILE__)
+require File.expand_path('../resources', __FILE__)
+
 module Plurkr
   class Client
     include Configuration
     include Session    
     include Request
+    include Resources
 
     def initialize(options={})
       self.reset
