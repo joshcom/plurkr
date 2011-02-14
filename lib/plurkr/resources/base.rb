@@ -6,12 +6,12 @@ class Plurkr::Resources::Base
   end      
   
   def self.resource
-    self.respond_to?(:resource_name) ? self.resource_name : self.name
+    self.respond_to?(:resource_name) ? self.resource_name : self.name.split("::").last
   end
   
   def self.get(action, options={})
     Plurkr.client.authenticated_request({:method => :get,
-      :resource => "#{self.resource}/#{action}"}.merge(options))
+      :resource => "#{self.resource}/#{action}"}.merge(options)).body
   end
   
   def get(action, options={})
@@ -19,7 +19,8 @@ class Plurkr::Resources::Base
   end
 
   def load(attrs)
-    attrs.each { |key,value| self.send(key,value) }
+    attrs.each { |key,value| self.send("#{key}=",value) }
+    self
   end
   
   def initialize(*args)
@@ -35,7 +36,7 @@ class Plurkr::Resources::Base
         attributes.include?($`)
       end
     else
-      attributes[method]
+      attributes[method.to_s]
     end
   end
 end

@@ -39,7 +39,7 @@ module Plurkr
         req = nil
         MAX_LOGIN_ATTEMPTS.times do |t|
           begin
-            options[:cookie] = self.cookie            
+            options[:cookie] = self.cookie
             req = @client.request(options)
             break
           rescue Plurkr::Middleware::LoginRequired => e

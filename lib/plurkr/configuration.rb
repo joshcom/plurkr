@@ -19,6 +19,10 @@ module Plurkr
       end
     end
 
+    def configure
+      yield self
+    end
+    
     def configuration
       MUTABLE_OPTION_KEYS.inject({}) do |conf,key|
         conf.merge!(key=>self.send(key))

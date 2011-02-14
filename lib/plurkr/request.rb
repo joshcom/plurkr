@@ -9,6 +9,7 @@ module Plurkr
     def connection_options(options)
       c_opts = {}
       c_opts[:ssl] = true if options[:ssl]
+      c_opts[:cookie] = options[:cookie] if options.include?(:cookie)
       c_opts
     end
     

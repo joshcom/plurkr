@@ -23,7 +23,7 @@ module Plurkr
 
     def faraday_options(options={})
       f_opts = {:url => "#{protocol(options)}#{self.endpoint}"}
-      f_opts[:headers] = { :Cookie => options[:cookie] } if options.include?(:cookie) 
+      f_opts[:headers] = { :Cookie => options[:cookie] } if options[:cookie] 
       f_opts
     end
   end
