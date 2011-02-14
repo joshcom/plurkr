@@ -16,15 +16,9 @@ describe Plurkr::Client do
   end
   
   context "when making requests" do
-    it "should require authentication when requesting a resource" do
-      expect { 
-        @p_client.request(:resource => 'Polling/getUnreadCount') 
-      }.to raise_error(Plurkr::Unauthenticated)
-    end
-    
-    it "should not require authentication when told otherwise" do
+    it "should request without error" do
       stub_logout_request
-      @p_client.request(:resource => 'Users/logout', :no_auth => true)
+      @p_client.request(:resource => 'Users/logout')
     end
 
   end

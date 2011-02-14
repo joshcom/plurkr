@@ -1,5 +1,4 @@
 require File.expand_path('../configuration', __FILE__)
-require File.expand_path('../session', __FILE__)
 require File.expand_path('../request', __FILE__)
 module Plurkr
   class Client

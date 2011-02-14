@@ -21,6 +21,34 @@ describe Plurkr::Session::CookieSession do
     end
   end
   
+  context "when logged in" do
+    it "should make authenticated requests" do
+      stub_login_request
+      stub_dev_null
+      c = Plurkr::Session::CookieSession.new(@p_client)
+      c.login
+      response = c.authenticated_request( :method => :get, :resource => "Dev/null" )
+      response_success_text(response).should eq( a_successful_response )
+    end
+    
+    it "should create a session automatically" do
+      stub_login_request
+      stub_dev_null
+      c = Plurkr::Session::CookieSession.new(@p_client)
+      response = c.authenticated_request( :method => :get, :resource => "Dev/null" )
+      response_success_text(response).should eq( a_successful_response )
+    end
+    
+    it "should fail if a session cannot be established" do
+      stub_login_request
+      stub_dev_null_login_required
+      c = Plurkr::Session::CookieSession.new(@p_client)
+      expect {
+        c.authenticated_request( :method => :get, :resource => "Dev/null" )
+      }.to raise_error(Plurkr::Middleware::LoginRequired)     
+    end
+  end
+  
   context "when logging out" do
     it "should destroy the current session" do
       stub_login_request

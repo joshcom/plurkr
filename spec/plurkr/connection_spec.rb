@@ -14,6 +14,13 @@ describe Plurkr::Client do
       }.to raise_error(Plurkr::Middleware::BadRequest, "Invalid login")
     end
     
+    it "should raise a LoginRequired with a 400 and a 'Requires login' message" do
+      stub_login_request_login_required
+      expect { 
+        @p_client.login 
+      }.to raise_error(Plurkr::Middleware::LoginRequired)        
+    end
+    
     it "should raise NotFound with a 404 and no message" do
       stub_login_404
       expect { 
