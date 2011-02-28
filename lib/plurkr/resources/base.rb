@@ -1,3 +1,5 @@
+require 'time'
+
 class Plurkr::Resources::Base
   attr_accessor :attributes
 
@@ -12,6 +14,10 @@ class Plurkr::Resources::Base
   def self.get(action, options={})
     Plurkr.client.authenticated_request({:method => :get,
       :resource => "#{self.resource}/#{action}"}.merge(options)).body
+  end
+
+  def self.to_plurk_time(time)
+    time.iso8601
   end
   
   def get(action, options={})

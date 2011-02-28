@@ -1,6 +1,6 @@
 require File.expand_path('../../../spec_helper', __FILE__)
 
-describe Plurkr::Resources do
+describe Plurkr::Resources::Profile do
   def stub_my_profile
     stub_request(:get, "http://www.plurk.com/API/Profile/getOwnProfile?api_key=#{test_api_key}").
     with(:headers => {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).

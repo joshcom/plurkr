@@ -18,6 +18,15 @@ def test_password
   "password"
 end
 
+def configure_client
+  stub_login_request
+  Plurkr.configure do |p|
+    p.api_key = test_api_key
+    p.username = test_username
+    p.password = test_password
+  end
+end
+
 def response_success_text(response)
   response.body["success_text"]
 end
