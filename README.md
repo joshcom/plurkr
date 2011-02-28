@@ -12,17 +12,17 @@ TODO
 
 Usage
 -----
-  require "rubygems"
-  require "plurkr"
+    require "rubygems"
+    require "plurkr"
 
-  Plurkr.configure do |p|
-    p.api_key = "MYKEY"
-    p.password = "PLURK_PASSWORD" 
-    p.username = "PLURK_USERNAME"
-  end
+    Plurkr.configure do |p|
+      p.api_key = "MYKEY"
+      p.password = "PLURK_PASSWORD" 
+      p.username = "PLURK_USERNAME"
+    end
+      
+    # Retrieve your profile information
+    my_profile = Plurkr.profile.my
 
-  # Retrieve your profile information
-  my_profile = Plurkr.profile.my
-
-  # Retrieve your public profile
-  my_public_profile = Plurkr.profile.for my_profile.user_info.uid
+    # Retrieve your public profile
+    my_public_profile = Plurkr.profile.for my_profile.user_info.uid
