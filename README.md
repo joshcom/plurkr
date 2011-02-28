@@ -1,6 +1,6 @@
 Plurkr
 ======
-A Ruby library for Plurk's HTTP API: http://www.plurk.com/API
+A Ruby library for the Plurk HTTP API: http://www.plurk.com/API
 
 Installation
 ------------
@@ -10,8 +10,8 @@ Documentation
 -------------
 TODO
 
-Usage Examples
---------------
+Usage
+-----
   require "rubygems"
   require "plurkr"
 
